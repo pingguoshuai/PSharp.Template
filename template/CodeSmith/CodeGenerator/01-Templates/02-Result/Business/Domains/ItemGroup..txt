@@ -1,8 +1,0 @@
-﻿<ItemGroup>
-    <Compile Update="Models/Article.*.cs">
-      <DependentUpon>Article.cs</DependentUpon>
-    </Compile>
-    <Compile Update="Models/Column.*.cs">
-      <DependentUpon>Column.cs</DependentUpon>
-    </Compile>
-</ItemGroup>

@@ -26,3 +26,4 @@ BenchmarkDotNet.Artifacts/
 /sample/Interface/Client/unpackage
 /document/JIM/api-csharp/.vs
 /sample/PSharp.Template.ApiHost/web.config
+/template/CodeSmith/CodeGenerator/01-Templates/02-Result
