@@ -1,0 +1,470 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B58D16AD-9987-4BB8-8BB2-2A0CE8BC9829}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CodeGenerator</RootNamespace>
+    <AssemblyName>CodeGenerator</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CodeSmith.Core, Version=1.1.0.0, Culture=neutral, PublicKeyToken=9fd61cdb91609a7a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\CodeSmith.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="CodeSmith.Engine, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fd61cdb91609a7a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\CodeSmith.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.NRefactory, Version=5.0.0.6, Culture=neutral, PublicKeyToken=d4bfe873e7598c49, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\ICSharpCode.NRefactory.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.NRefactory.CSharp, Version=5.0.0.6, Culture=neutral, PublicKeyToken=d4bfe873e7598c49, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\ICSharpCode.NRefactory.CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil, Version=0.9.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="SchemaExplorer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fd61cdb91609a7a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\SchemaExplorer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="01-Templates\02-Result\Common\Controllers\DicInfoController.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Controllers\DicTypeController.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Controllers\NewsController.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Controllers\SysFileController.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Datas\Mappings\MySql\DicInfoMap.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Datas\Mappings\MySql\DicTypeMap.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Datas\Mappings\MySql\NewsMap.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Datas\Mappings\MySql\SysFileMap.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Datas\Mappings\PgSql\DicInfoMap.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Datas\Mappings\PgSql\DicTypeMap.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Datas\Mappings\PgSql\NewsMap.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Datas\Mappings\PgSql\SysFileMap.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Datas\Mappings\SqlServer\DicInfoMap.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Datas\Mappings\SqlServer\DicTypeMap.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Datas\Mappings\SqlServer\NewsMap.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Datas\Mappings\SqlServer\SysFileMap.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Datas\Repositories\DicInfoRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Datas\Repositories\DicTypeRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Datas\Repositories\NewsRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Datas\Repositories\SysFileRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Domains\Models\DicInfo.Base.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Domains\Models\DicInfo.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Domains\Models\DicType.Base.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Domains\Models\DicType.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Domains\Models\News.Base.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Domains\Models\News.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Domains\Models\SysFile.Base.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Domains\Models\SysFile.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Domains\Repositories\IDicInfoRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Domains\Repositories\IDicTypeRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Domains\Repositories\INewsRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Domains\Repositories\ISysFileRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Services\Abstractions\IDicInfoService.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Services\Abstractions\IDicTypeService.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Services\Abstractions\INewsService.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Services\Abstractions\ISysFileService.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Services\Dtos\DicInfoDto.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Services\Dtos\DicTypeDto.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Services\Dtos\Extensions\Extensions.DicInfoDto.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Services\Dtos\Extensions\Extensions.DicTypeDto.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Services\Dtos\Extensions\Extensions.NewsDto.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Services\Dtos\Extensions\Extensions.SysFileDto.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Services\Dtos\NewsDto.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Services\Dtos\Requests\CreateDicInfoRequest.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Services\Dtos\Requests\CreateDicTypeRequest.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Services\Dtos\Requests\CreateNewsRequest.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Services\Dtos\Requests\CreateSysFileRequest.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Services\Dtos\SysFileDto.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Services\Implements\DicInfoService.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Services\Implements\DicTypeService.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Services\Implements\NewsService.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Services\Implements\SysFileService.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Services\Queries\DicInfoQuery.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Services\Queries\DicTypeQuery.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Services\Queries\NewsQuery.cs" />
+    <Compile Include="01-Templates\02-Result\Common\Services\Queries\SysFileQuery.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Controllers\CommentController.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Controllers\DepartmentController.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Controllers\DoctorController.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Controllers\HospitalController.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Controllers\MemberController.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Controllers\QuestionController.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Controllers\QuestionMsgController.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Datas\Mappings\MySql\CommentMap.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Datas\Mappings\MySql\DepartmentMap.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Datas\Mappings\MySql\DoctorMap.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Datas\Mappings\MySql\HospitalMap.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Datas\Mappings\MySql\MemberMap.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Datas\Mappings\MySql\QuestionMap.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Datas\Mappings\MySql\QuestionMsgMap.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Datas\Mappings\PgSql\CommentMap.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Datas\Mappings\PgSql\DepartmentMap.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Datas\Mappings\PgSql\DoctorMap.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Datas\Mappings\PgSql\HospitalMap.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Datas\Mappings\PgSql\MemberMap.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Datas\Mappings\PgSql\QuestionMap.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Datas\Mappings\PgSql\QuestionMsgMap.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Datas\Mappings\SqlServer\CommentMap.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Datas\Mappings\SqlServer\DepartmentMap.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Datas\Mappings\SqlServer\DoctorMap.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Datas\Mappings\SqlServer\HospitalMap.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Datas\Mappings\SqlServer\MemberMap.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Datas\Mappings\SqlServer\QuestionMap.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Datas\Mappings\SqlServer\QuestionMsgMap.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Datas\Repositories\CommentRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Datas\Repositories\DepartmentRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Datas\Repositories\DoctorRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Datas\Repositories\HospitalRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Datas\Repositories\MemberRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Datas\Repositories\QuestionMsgRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Datas\Repositories\QuestionRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Domains\Models\Comment.Base.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Domains\Models\Comment.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Domains\Models\Department.Base.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Domains\Models\Department.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Domains\Models\Doctor.Base.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Domains\Models\Doctor.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Domains\Models\Hospital.Base.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Domains\Models\Hospital.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Domains\Models\Member.Base.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Domains\Models\Member.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Domains\Models\Question.Base.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Domains\Models\Question.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Domains\Models\QuestionMsg.Base.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Domains\Models\QuestionMsg.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Domains\Repositories\ICommentRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Domains\Repositories\IDepartmentRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Domains\Repositories\IDoctorRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Domains\Repositories\IHospitalRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Domains\Repositories\IMemberRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Domains\Repositories\IQuestionMsgRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Domains\Repositories\IQuestionRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Abstractions\ICommentService.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Abstractions\IDepartmentService.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Abstractions\IDoctorService.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Abstractions\IHospitalService.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Abstractions\IMemberService.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Abstractions\IQuestionMsgService.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Abstractions\IQuestionService.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Dtos\CommentDto.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Dtos\DepartmentDto.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Dtos\DoctorDto.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Dtos\Extensions\Extensions.CommentDto.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Dtos\Extensions\Extensions.DepartmentDto.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Dtos\Extensions\Extensions.DoctorDto.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Dtos\Extensions\Extensions.HospitalDto.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Dtos\Extensions\Extensions.MemberDto.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Dtos\Extensions\Extensions.QuestionDto.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Dtos\Extensions\Extensions.QuestionMsgDto.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Dtos\HospitalDto.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Dtos\MemberDto.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Dtos\QuestionDto.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Dtos\QuestionMsgDto.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Dtos\Requests\CreateCommentRequest.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Dtos\Requests\CreateDepartmentRequest.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Dtos\Requests\CreateDoctorRequest.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Dtos\Requests\CreateHospitalRequest.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Dtos\Requests\CreateMemberRequest.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Dtos\Requests\CreateQuestionMsgRequest.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Dtos\Requests\CreateQuestionRequest.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Implements\CommentService.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Implements\DepartmentService.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Implements\DoctorService.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Implements\HospitalService.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Implements\MemberService.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Implements\QuestionMsgService.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Implements\QuestionService.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Queries\CommentQuery.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Queries\DepartmentQuery.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Queries\DoctorQuery.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Queries\HospitalQuery.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Queries\MemberQuery.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Queries\QuestionMsgQuery.cs" />
+    <Compile Include="01-Templates\02-Result\Consult\Services\Queries\QuestionQuery.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Controllers\ApplicationController.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Controllers\InterfaceController.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Controllers\PermissionController.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Controllers\ResourceController.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Controllers\RoleController.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Controllers\UserController.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Controllers\UserRoleController.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Datas\Mappings\MySql\ApplicationMap.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Datas\Mappings\MySql\InterfaceMap.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Datas\Mappings\MySql\PermissionMap.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Datas\Mappings\MySql\ResourceMap.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Datas\Mappings\MySql\RoleMap.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Datas\Mappings\MySql\UserMap.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Datas\Mappings\MySql\UserRoleMap.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Datas\Mappings\PgSql\ApplicationMap.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Datas\Mappings\PgSql\InterfaceMap.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Datas\Mappings\PgSql\PermissionMap.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Datas\Mappings\PgSql\ResourceMap.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Datas\Mappings\PgSql\RoleMap.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Datas\Mappings\PgSql\UserMap.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Datas\Mappings\PgSql\UserRoleMap.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Datas\Mappings\SqlServer\ApplicationMap.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Datas\Mappings\SqlServer\InterfaceMap.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Datas\Mappings\SqlServer\PermissionMap.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Datas\Mappings\SqlServer\ResourceMap.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Datas\Mappings\SqlServer\RoleMap.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Datas\Mappings\SqlServer\UserMap.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Datas\Mappings\SqlServer\UserRoleMap.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Datas\Repositories\ApplicationRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Datas\Repositories\InterfaceRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Datas\Repositories\PermissionRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Datas\Repositories\ResourceRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Datas\Repositories\RoleRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Datas\Repositories\UserRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Datas\Repositories\UserRoleRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Domains\Models\Application.Base.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Domains\Models\Application.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Domains\Models\Interface.Base.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Domains\Models\Interface.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Domains\Models\Permission.Base.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Domains\Models\Permission.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Domains\Models\Resource.Base.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Domains\Models\Resource.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Domains\Models\Role.Base.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Domains\Models\Role.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Domains\Models\User.Base.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Domains\Models\User.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Domains\Models\UserRole.Base.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Domains\Models\UserRole.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Domains\Repositories\IApplicationRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Domains\Repositories\IInterfaceRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Domains\Repositories\IPermissionRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Domains\Repositories\IResourceRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Domains\Repositories\IRoleRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Domains\Repositories\IUserRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Domains\Repositories\IUserRoleRepository.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Abstractions\IApplicationService.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Abstractions\IInterfaceService.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Abstractions\IPermissionService.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Abstractions\IResourceService.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Abstractions\IRoleService.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Abstractions\IUserRoleService.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Abstractions\IUserService.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Dtos\ApplicationDto.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Dtos\Extensions\Extensions.ApplicationDto.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Dtos\Extensions\Extensions.InterfaceDto.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Dtos\Extensions\Extensions.PermissionDto.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Dtos\Extensions\Extensions.ResourceDto.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Dtos\Extensions\Extensions.RoleDto.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Dtos\Extensions\Extensions.UserDto.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Dtos\Extensions\Extensions.UserRoleDto.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Dtos\InterfaceDto.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Dtos\PermissionDto.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Dtos\Requests\CreateApplicationRequest.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Dtos\Requests\CreateInterfaceRequest.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Dtos\Requests\CreatePermissionRequest.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Dtos\Requests\CreateUserRequest.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Dtos\Requests\CreateUserRoleRequest.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Dtos\ResourceDto.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Dtos\RoleDto.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Dtos\UserDto.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Dtos\UserRoleDto.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Implements\ApplicationService.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Implements\InterfaceService.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Implements\PermissionService.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Implements\ResourceService.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Implements\RoleService.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Implements\UserRoleService.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Implements\UserService.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Queries\ApplicationQuery.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Queries\InterfaceQuery.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Queries\PermissionQuery.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Queries\ResourceQuery.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Queries\RoleQuery.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Queries\UserQuery.cs" />
+    <Compile Include="01-Templates\02-Result\Systems\Services\Queries\UserRoleQuery.cs" />
+    <Compile Include="01-Templates\02-Result\UnitOfWork\IInquiryUnitOfWork.cs" />
+    <Compile Include="01-Templates\02-Result\UnitOfWork\UnitOfWorks\MySql\InquiryUnitOfWork.cs" />
+    <Compile Include="01-Templates\02-Result\UnitOfWork\UnitOfWorks\PgSql\InquiryUnitOfWork.cs" />
+    <Compile Include="01-Templates\02-Result\UnitOfWork\UnitOfWorks\SqlServer\InquiryUnitOfWork.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="01-Templates\Common\Extensions.cs" />
+    <Compile Include="01-Templates\Common\Generator.cs" />
+    <Compile Include="01-Templates\Common\Model.cs" />
+    <Compile Include="01-Templates\Common\Parser.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="01-Templates\02-Result\Common\views\Common\DicInfo\detail.vue" />
+    <None Include="01-Templates\02-Result\Common\views\Common\DicInfo\edit.vue" />
+    <None Include="01-Templates\02-Result\Common\views\Common\DicInfo\Index.cshtml" />
+    <None Include="01-Templates\02-Result\Common\views\Common\DicInfo\Index.vue" />
+    <None Include="01-Templates\02-Result\Common\views\Common\DicType\detail.vue" />
+    <None Include="01-Templates\02-Result\Common\views\Common\DicType\edit.vue" />
+    <None Include="01-Templates\02-Result\Common\views\Common\DicType\Index.cshtml" />
+    <None Include="01-Templates\02-Result\Common\views\Common\DicType\Index.vue" />
+    <None Include="01-Templates\02-Result\Common\views\Common\News\detail.vue" />
+    <None Include="01-Templates\02-Result\Common\views\Common\News\edit.vue" />
+    <None Include="01-Templates\02-Result\Common\views\Common\News\Index.cshtml" />
+    <None Include="01-Templates\02-Result\Common\views\Common\News\Index.vue" />
+    <None Include="01-Templates\02-Result\Common\views\Common\SysFile\detail.vue" />
+    <None Include="01-Templates\02-Result\Common\views\Common\SysFile\edit.vue" />
+    <None Include="01-Templates\02-Result\Common\views\Common\SysFile\Index.cshtml" />
+    <None Include="01-Templates\02-Result\Common\views\Common\SysFile\Index.vue" />
+    <None Include="01-Templates\02-Result\Common\views\DicInfo\Index.cshtml" />
+    <None Include="01-Templates\02-Result\Common\views\DicType\Index.cshtml" />
+    <None Include="01-Templates\02-Result\Common\views\News\Index.cshtml" />
+    <None Include="01-Templates\02-Result\Common\views\SysFile\Index.cshtml" />
+    <None Include="01-Templates\02-Result\Consult\views\consult\comment\detail.vue" />
+    <None Include="01-Templates\02-Result\Consult\views\consult\comment\edit.vue" />
+    <None Include="01-Templates\02-Result\Consult\views\consult\comment\index.vue" />
+    <None Include="01-Templates\02-Result\Consult\views\consult\department\detail.vue" />
+    <None Include="01-Templates\02-Result\Consult\views\consult\department\edit.vue" />
+    <None Include="01-Templates\02-Result\Consult\views\consult\department\index.vue" />
+    <None Include="01-Templates\02-Result\Consult\views\consult\doctor\detail.vue" />
+    <None Include="01-Templates\02-Result\Consult\views\consult\doctor\edit.vue" />
+    <None Include="01-Templates\02-Result\Consult\views\consult\doctor\index.vue" />
+    <None Include="01-Templates\02-Result\Consult\views\consult\hospital\detail.vue" />
+    <None Include="01-Templates\02-Result\Consult\views\consult\hospital\edit.vue" />
+    <None Include="01-Templates\02-Result\Consult\views\consult\hospital\index.vue" />
+    <None Include="01-Templates\02-Result\Consult\views\consult\member\detail.vue" />
+    <None Include="01-Templates\02-Result\Consult\views\consult\member\edit.vue" />
+    <None Include="01-Templates\02-Result\Consult\views\consult\member\index.vue" />
+    <None Include="01-Templates\02-Result\Consult\views\consult\questionMsg\detail.vue" />
+    <None Include="01-Templates\02-Result\Consult\views\consult\questionMsg\edit.vue" />
+    <None Include="01-Templates\02-Result\Consult\views\consult\questionMsg\index.vue" />
+    <None Include="01-Templates\02-Result\Consult\views\consult\question\detail.vue" />
+    <None Include="01-Templates\02-Result\Consult\views\consult\question\edit.vue" />
+    <None Include="01-Templates\02-Result\Consult\views\consult\question\index.vue" />
+    <None Include="01-Templates\02-Result\Systems\views\systems\application\detail.vue" />
+    <None Include="01-Templates\02-Result\Systems\views\systems\application\edit.vue" />
+    <None Include="01-Templates\02-Result\Systems\views\systems\application\index.vue" />
+    <None Include="01-Templates\02-Result\Systems\views\systems\interface\detail.vue" />
+    <None Include="01-Templates\02-Result\Systems\views\systems\interface\edit.vue" />
+    <None Include="01-Templates\02-Result\Systems\views\systems\interface\index.vue" />
+    <None Include="01-Templates\02-Result\Systems\views\systems\permission\detail.vue" />
+    <None Include="01-Templates\02-Result\Systems\views\systems\permission\edit.vue" />
+    <None Include="01-Templates\02-Result\Systems\views\systems\permission\index.vue" />
+    <None Include="01-Templates\02-Result\Systems\views\systems\resource\detail.vue" />
+    <None Include="01-Templates\02-Result\Systems\views\systems\resource\edit.vue" />
+    <None Include="01-Templates\02-Result\Systems\views\systems\resource\index.vue" />
+    <None Include="01-Templates\02-Result\Systems\views\systems\role\detail.vue" />
+    <None Include="01-Templates\02-Result\Systems\views\systems\role\edit.vue" />
+    <None Include="01-Templates\02-Result\Systems\views\systems\role\index.vue" />
+    <None Include="01-Templates\02-Result\Systems\views\systems\user\detail.vue" />
+    <None Include="01-Templates\02-Result\Systems\views\systems\user\edit.vue" />
+    <None Include="01-Templates\02-Result\Systems\views\systems\user\index.vue" />
+    <None Include="01-Templates\Templates\Datas\PgSql\Mapping.cst" />
+    <None Include="01-Templates\Templates\Datas\PgSql\UnitOfWork.cst" />
+    <None Include="01-Templates\Templates\Datas\MySql\Mapping.cst" />
+    <None Include="01-Templates\Templates\Datas\MySql\UnitOfWork.cst" />
+    <None Include="01-Templates\Templates\Domains\Factory.cst" />
+    <None Include="01-Templates\Templates\Domains\ItemGroup.cst" />
+    <None Include="01-Templates\Templates\PersistObjects\Datas\PgSql\PoMapping.cst" />
+    <None Include="01-Templates\Templates\PersistObjects\Datas\PoExtension.cst" />
+    <None Include="01-Templates\Templates\PersistObjects\Datas\Po.cst" />
+    <None Include="01-Templates\Templates\Datas\IUnitOfWork.cst" />
+    <None Include="01-Templates\Templates\Datas\Repository.cst" />
+    <None Include="01-Templates\Templates\Datas\SqlServer\Mapping.cst" />
+    <None Include="01-Templates\Templates\Datas\SqlServer\UnitOfWork.cst" />
+    <None Include="01-Templates\Templates\PersistObjects\Datas\SqlServer\PoMapping.cst" />
+    <None Include="01-Templates\Templates\PersistObjects\Datas\Repository.cst" />
+    <None Include="01-Templates\Templates\PersistObjects\Datas\TreePo.cst" />
+    <None Include="01-Templates\Templates\PersistObjects\Services\Service.cst" />
+    <None Include="01-Templates\Templates\PersistObjects\Services\TreeService.cst" />
+    <None Include="01-Templates\Templates\Presentation\Controllers\ApiController.cst" />
+    <None Include="01-Templates\Templates\Presentation\Controllers\TreeApiController.cst" />
+    <None Include="01-Templates\Templates\Presentation\Pages\QueryView.cst" />
+    <None Include="01-Templates\Templates\Presentation\Pages\DialogIndexView.cst" />
+    <None Include="01-Templates\Templates\Presentation\Pages\DialogEditView.cst" />
+    <None Include="01-Templates\Templates\Presentation\Pages\DialogDetailView.cst" />
+    <None Include="01-Templates\Templates\Presentation\Typings\IndexComponent.cst" />
+    <None Include="01-Templates\Templates\Presentation\Typings\Module.cst" />
+    <None Include="01-Templates\Templates\Presentation\Typings\Query.cst" />
+    <None Include="01-Templates\Templates\Presentation\Typings\Routing.cst" />
+    <None Include="01-Templates\Templates\Presentation\Typings\Trees\TreeIndexComponent.cst" />
+    <None Include="01-Templates\Templates\Presentation\Typings\ViewModel.cst" />
+    <None Include="01-Templates\Templates\Presentation\Typings\EditComponent.cst" />
+    <None Include="01-Templates\Templates\Presentation\Typings\DetailComponent.cst" />
+    <None Include="01-Templates\Templates\Presentation\Typings\Trees\TreeViewModel.cst" />
+    <None Include="01-Templates\Templates\Presentation\Typings\Trees\TreeQuery.cst" />
+    <None Include="01-Templates\Templates\Presentation\Pages\IndexView.cst" />
+    <None Include="01-Templates\Templates\Presentation\Pages\EditView.cst" />
+    <None Include="01-Templates\Templates\Presentation\Pages\DetailView.cst" />
+    <None Include="01-Templates\Templates\Presentation\Pages\TreeIndexView.cst" />
+    <None Include="01-Templates\Templates\Presentation\Typings\DialogIndexComponent.cst" />
+    <None Include="01-Templates\Templates\Presentation\Typings\DialogEditComponent.cst" />
+    <None Include="01-Templates\Templates\Presentation\Typings\DialogDetailComponent.cst" />
+    <None Include="01-Templates\Templates\Presentation\Typings\DialogRouting.cst" />
+    <None Include="01-Templates\Templates\Presentation\Typings\DialogModule.cst" />
+    <None Include="01-Templates\Templates\Services\Dto.cst" />
+    <None Include="01-Templates\Templates\Services\DtoExtension.cst" />
+    <None Include="01-Templates\Templates\Services\IocConfig.cst" />
+    <None Include="01-Templates\Templates\Domains\Entity.Base.cst" />
+    <None Include="01-Templates\Templates\Domains\Entity.cst" />
+    <None Include="01-Templates\Templates\Domains\IRepository.cst" />
+    <None Include="01-Templates\Templates\Domains\TreeEntity.cst" />
+    <None Include="01-Templates\Templates\PersistObjects\Datas\Store.cst" />
+    <None Include="01-Templates\Templates\PersistObjects\Datas\IStore.cst" />
+    <None Include="01-Templates\Templates\PersistObjects\Domains\IRepository.cst" />
+    <None Include="01-Templates\Templates\Services\IService.cst" />
+    <None Include="01-Templates\Templates\Services\Query.cst" />
+    <None Include="01-Templates\Templates\Services\Service.cst" />
+    <None Include="01-Templates\Templates\Services\Trees\TreeQuery.cst" />
+    <None Include="01-Templates\Templates\Services\Trees\TreeDto.cst" />
+    <None Include="01-Templates\Templates\Services\Trees\ITreeService.cst" />
+    <None Include="01-Templates\Templates\Services\Trees\TreeService.cst" />
+    <None Include="01-Templates\Templates\Tests\DtoTest.cst" />
+    <None Include="01-Templates\Templates\Tests\EntityTest.cst" />
+    <None Include="01-Templates\Templates\Tests\EntityTest.Data.cst" />
+    <None Include="01-Templates\Templates\Tests\ServiceTest.cst" />
+    <None Include="Project.csp" />
+    <None Include="01-Templates\Templates.cst" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="01-Templates\02-Result\Common\Domains\ItemGroup..txt" />
+    <Content Include="01-Templates\02-Result\Consult\Domains\ItemGroup..txt" />
+    <Content Include="01-Templates\02-Result\Systems\Domains\ItemGroup..txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

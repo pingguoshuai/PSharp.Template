@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>$(SolutionDir)output\release\</OutputPath>
+    <DocumentationFile>$(SolutionDir)output\release\netstandard2.1\PSharp.Template.Systems.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>$(SolutionDir)output\release\</OutputPath>
+    <DocumentationFile>$(SolutionDir)output\release\netstandard2.1\PSharp.Template.Systems.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PSharp.Template.Core\PSharp.Template.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Domains/Models/User.*.cs">
+      <DependentUpon>User.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Domains/Models/Role.*.cs">
+      <DependentUpon>Role.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Domains/Models/Application.*.cs">
+      <DependentUpon>Application.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Domains/Models/Permission.*.cs">
+      <DependentUpon>Permission.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Domains/Models/Resource.*.cs">
+      <DependentUpon>Resource.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Domains/Models/Interface.*.cs">
+      <DependentUpon>Interface.cs</DependentUpon>
+    </Compile>
+  </ItemGroup></Project>

@@ -1,0 +1,170 @@
+﻿<%@ Template Language="C#" TargetLanguage="C#" Debug="True" Encoding="UTF-8" %>
+
+<%@ Assembly Src="..\..\Common\Model.cs" %>
+<%@ Assembly Src="..\..\Common\Extensions.cs" %>
+
+<%@ Import Namespace="System.Collections.Generic" %>
+<%@ Import Namespace="System.Linq" %>
+<%@ Import Namespace="System.Text" %>
+<%@ Import Namespace="System.Text.RegularExpressions" %>
+<%@ Import Namespace="SchemaMapper" %>
+
+<%@ Property Name="Entity" Type="SchemaMapper.Entity"  %>
+<%@ Property Name="Namespace" Type="System.String" %>
+<%-- Safe类名 --%>
+<% string SafeClassName = Entity.ClassName.ToSafeName(); %>
+<%-- 描述 --%>
+<% string Description = Entity.Description; %>
+<%-- 驼峰形式类名 --%>
+<% string CamelClassName = SafeClassName.ToCamelCase(); %>
+
+<template>
+  <a-modal
+    title="<%=Description%>"
+    :width="640"
+    :visible="visible"
+    :confirmLoading="confirmLoading"
+    @ok="handleSubmit"
+    @cancel="handleCancel"
+  >
+    <a-spin :spinning="confirmLoading">
+      <a-form :form="form">
+        <% foreach(Property p in Entity.Properties) { %>
+        <% if( p.IsPrimaryKey.SafeValue() ) continue; %>
+        <% if( Entity.IsHidden(p) ) continue; %>
+        <% if(p.DataType == DbType.Boolean) {%>
+        <a-form-item label="<%= p.Description.ToSafeName() %>" :labelCol="labelCol" :wrapperCol="wrapperCol">
+          <a-switch  v-decorator="['<%= p.PropertyName.ToSafeName().ToFirstLower() %>', { valuePropName:'checked', initialValue: true }]" />
+        </a-form-item>
+        <%continue;}
+        %>
+        <% if( p.MaxLength >= 256 ) {%>
+            <a-form-item label="<%= p.Description.ToSafeName() %>" :labelCol="labelCol" :wrapperCol="wrapperCol">
+              <a-textarea v-decorator="['<%= p.PropertyName.ToSafeName().ToFirstLower() %>',  <% Response.Write(CreateRule(p)); %>]" :autoSize="{ minRows: 3, maxRows: 5 }" />
+            </a-form-item>
+        <% }else{ %>
+            <a-form-item label="<%= p.Description.ToSafeName() %>" :labelCol="labelCol" :wrapperCol="wrapperCol">
+              <a-input<%if(p.DataType == DbType.Int16 || p.DataType == DbType.Int32 || p.DataType == DbType.Int64) Response.Write("-number"); %> v-decorator="['<%= p.PropertyName.ToSafeName().ToFirstLower() %>', <% Response.Write(CreateRule(p)); %>]" />
+            </a-form-item>
+        <% } %>
+        <% } %>
+      </a-form>
+    </a-spin>
+  </a-modal>
+</template>
+
+<script>
+import { axios } from '@/utils/request'
+import pick from 'lodash.pick'
+
+export default {
+  props: {
+    afterSubmit: {
+      type: Function,
+      default: null
+    }
+  },
+  data () {
+    return {
+      form: this.$form.createForm(this),
+      labelCol: { xs: { span: 24 }, sm: { span: 7 } },
+      wrapperCol: { xs: { span: 24 }, sm: { span: 13 } },
+      visible: false,
+      confirmLoading: false,
+      entity: {},
+      isadd : true
+    }
+  },
+  methods: {
+    add () {
+      this.visible = true;
+      this.isadd = true;
+      this.form.resetFields();
+      this.entity = {};
+    },
+    edit(id){
+      this.visible = true;
+      this.isadd = false;
+      this.entity = {};
+      this.$nextTick(() => {
+        this.form.resetFields();
+        var formFields = this.form.getFieldsValue()
+
+        this.confirmLoading = true
+        axios.get('/api/<%=SafeClassName%>/'+id).then(res => {
+          this.entity = res.data;
+
+          var setData = {}
+          Object.keys(formFields).forEach(item => {
+            setData[item] = this.entity[item]
+          })
+
+          this.form.setFieldsValue(setData)
+          this.confirmLoading = false
+        }).catch(errors=>{
+          this.confirmLoading = false
+        })
+      })
+    },
+    handleSubmit () {
+      this.form.validateFields((errors,values)=>{
+        if(!errors){
+          this.entity = Object.assign(this.entity, this.form.getFieldsValue());
+          this.confirmLoading = true
+          if(this.isadd){
+            axios.post('/api/<%=SafeClassName%>', this.entity).then(res => {
+                this.visible = false
+                this.confirmLoading = false
+                this.afterSubmit();
+            }).catch(errors=>{
+              this.confirmLoading = false
+            })
+          }else{
+            axios.put('/api/<%=SafeClassName%>', this.entity).then(res => {
+                this.visible = false
+                this.confirmLoading = false
+                this.afterSubmit();
+            }).catch(errors=>{
+              this.confirmLoading = false
+            })
+          }
+        }
+      });
+    },
+    handleCancel () {
+      this.visible = false
+    }
+  }
+}
+</script>
+
+<script runat="template">
+public string CreateRule(Property property){
+    StringBuilder sb = new StringBuilder();
+    sb.Append("{ rules: [");
+    
+    if(property.DataType == DbType.Int16 || property.DataType == DbType.Int32 || property.DataType == DbType.Int64){
+        sb.Append("{type: 'number', message: '请输入正确的"+property.Description.ToSafeName()+"'},");
+    }else{
+    }
+    if(property.MaxLength.HasValue){
+        sb.Append("{max: "+property.MaxLength+", message: '不能超过"+property.MaxLength+"个字符'},");
+    }
+    
+    if(property.IsNullable.HasValue && !property.IsNullable.Value){
+        sb.Append("{required: true, message: '请输入"+property.Description.ToSafeName()+"'},");
+    }
+    sb.Append("]");
+    if(property.DataType == DbType.Boolean){
+        sb.Append(",valuePropName:'checked'");
+        sb.Append(", initialValue: true ");
+    }
+    if(property.DataType == DbType.Int16 || property.DataType == DbType.Int32 || property.DataType == DbType.Int64){
+        sb.Append(", initialValue: 1 ");
+    }
+    
+    sb.Append("}");
+    
+    return sb.ToString();
+}
+</script>

@@ -1,0 +1,11 @@
+﻿<ItemGroup>
+    <Compile Update="Models/DicInfo.*.cs">
+      <DependentUpon>DicInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Models/DicType.*.cs">
+      <DependentUpon>DicType.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Models/SysFile.*.cs">
+      <DependentUpon>SysFile.cs</DependentUpon>
+    </Compile>
+</ItemGroup>

@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "lao zhang", 
+    "classifications": [ "Web/WebAPI" ], 
+    "name": "PSharp.Core Dotnet", 
+    "identity": "PSharp.Core.Template", 
+    "shortName": "PSharp.Template",
+    "tags": {
+      "language": "C#" ,
+      "type":"project"
+    },
+    "sourceName": "PSharp.Template",
+    "preferNameDirectory": true 
+}

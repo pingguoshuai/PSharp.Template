@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>$(SolutionDir)output\release\netstandard2.1\PSharp.Template.Common.xml</DocumentationFile>
+    <OutputPath>$(SolutionDir)output\release\</OutputPath>
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>$(SolutionDir)output\release\</OutputPath>
+    <DocumentationFile>$(SolutionDir)output\release\netstandard2.1\PSharp.Template.Common.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PSharp.Template.Core\PSharp.Template.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Domains/Models/DicInfo.*.cs">
+      <DependentUpon>DicInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Domains/Models/DicType.*.cs">
+      <DependentUpon>DicType.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Domains/Models/SysFile.*.cs">
+      <DependentUpon>SysFile.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>

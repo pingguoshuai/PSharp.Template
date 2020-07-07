@@ -1,0 +1,130 @@
+﻿<%@ Template Language="C#" TargetLanguage="C#" Debug="True" Encoding="UTF-8" %>
+
+<%@ Assembly Src="..\..\Common\Model.cs" %>
+<%@ Assembly Src="..\..\Common\Extensions.cs" %>
+
+<%@ Import Namespace="System.Collections.Generic" %>
+<%@ Import Namespace="System.Linq" %>
+<%@ Import Namespace="System.Text" %>
+<%@ Import Namespace="System.Text.RegularExpressions" %>
+<%@ Import Namespace="SchemaMapper" %>
+
+<%@ Property Name="Entity" Type="SchemaMapper.Entity"  %>
+<%@ Property Name="Namespace" Type="System.String" %>
+<%-- Safe类名 --%>
+<% string SafeClassName = Entity.ClassName.ToSafeName(); %>
+<%-- 描述 --%>
+<% string Description = Entity.Description; %>
+<%-- 驼峰形式类名 --%>
+<% string CamelClassName = SafeClassName.ToCamelCase(); %>
+
+<template>
+  <a-modal
+    title="<%=Description%>"
+    :width="640"
+    :visible="visible"
+    :confirmLoading="confirmLoading"
+    @cancel="handleCancel"
+  >
+    <a-spin :spinning="confirmLoading">
+        <a-card :bordered="false">
+        
+        <% foreach(Property p in Entity.Properties) { %>
+        <% if( p.IsPrimaryKey.SafeValue() ) continue; %>
+        <% if( Entity.IsHidden(p) ) continue; %>
+        <% if(p.DataType == DbType.Boolean) {%>
+        <detail-list>
+          <detail-list-item term="<%= p.Description.ToSafeName() %>">
+            <a-tag v-if="entity.<%= p.PropertyName.ToSafeName().ToFirstLower() %>" color="blue">是</a-tag>
+            <a-tag v-else color="orange">否</a-tag>
+          </detail-list-item>
+        </detail-list>
+        <%continue;}
+        %>        
+        <detail-list>
+          <detail-list-item term="<%= p.Description.ToSafeName() %>">{{entity.<%=p.PropertyName.ToSafeName().ToFirstLower() %>}}</detail-list-item>
+        </detail-list>
+        <% } %>
+      </a-card>
+    </a-spin>
+  </a-modal>
+</template>
+
+<script>
+import { axios } from '@/utils/request'
+import DetailList from '@/components/tools/DetailList'
+const DetailListItem = DetailList.Item
+
+export default {
+  components: {
+    DetailList,
+    DetailListItem
+  },
+  props: {
+    afterSubmit: {
+      type: Function,
+      default: null
+    }
+  },
+  data() {
+    return {
+      labelCol: { xs: { span: 24 }, sm: { span: 7 } },
+      wrapperCol: { xs: { span: 24 }, sm: { span: 13 } },
+      visible: false,
+      confirmLoading: false,
+      entity: {}
+    }
+  },
+  methods: {
+    detail(id) {
+      this.visible = true
+      this.entity = {}
+      this.confirmLoading = true
+        axios
+          .get('/api/<%=SafeClassName%>/' + id)
+          .then(res => {
+            this.entity = res.data
+            
+            this.confirmLoading = false
+          })
+          .catch(errors => {
+            this.confirmLoading = false
+          })
+    },
+    handleCancel() {
+      this.visible = false
+    }
+  }
+}
+</script>
+
+<script runat="template">
+public string CreateRule(Property property){
+    StringBuilder sb = new StringBuilder();
+    sb.Append("{ rules: [");
+    
+    if(property.DataType == DbType.Int16 || property.DataType == DbType.Int32 || property.DataType == DbType.Int64){
+        sb.Append("{type: 'number', message: '请输入正确的"+property.Description.ToSafeName()+"'},");
+    }else{
+    }
+    if(property.MaxLength.HasValue){
+        sb.Append("{max: "+property.MaxLength+", message: '不能超过"+property.MaxLength+"个字符'},");
+    }
+    
+    if(property.IsNullable.HasValue && !property.IsNullable.Value){
+        sb.Append("{required: true, message: '请输入"+property.Description.ToSafeName()+"'},");
+    }
+    sb.Append("]");
+    if(property.DataType == DbType.Boolean){
+        sb.Append(",valuePropName:'checked'");
+        sb.Append(", initialValue: true ");
+    }
+    if(property.DataType == DbType.Int16 || property.DataType == DbType.Int32 || property.DataType == DbType.Int64){
+        sb.Append(", initialValue: 1 ");
+    }
+    
+    sb.Append("}");
+    
+    return sb.ToString();
+}
+</script>
