@@ -17,7 +17,7 @@ namespace PSharp.Template.Business.Services.Implements {
     /// 栏目服务
     /// </summary>
     public class ColumnService : CrudServiceBase<Column, ColumnDto, UpdateColumnRequest, CreateColumnRequest, UpdateColumnRequest, ColumnQuery,Guid>, IColumnService {
-        private readonly IArticleRepository _articleRepository;
+        private readonly IColumnRepository _columnRepository;
         
         /// <summary>
         /// 初始化栏目服务

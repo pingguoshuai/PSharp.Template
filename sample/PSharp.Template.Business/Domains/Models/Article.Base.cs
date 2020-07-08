@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using PSharp.Template.Common.Domains.Models;
 using Util;
 using Util.Domains;
 using Util.Domains.Auditing;
@@ -156,7 +157,7 @@ namespace PSharp.Template.Business.Domains.Models {
         /// <summary>
         /// 文件
         /// </summary>
-        public Sysfile CoverSysfile { get; set; }
+        public SysFile CoverSysfile { get; set; }
         
         /// <summary>
         /// 添加描述

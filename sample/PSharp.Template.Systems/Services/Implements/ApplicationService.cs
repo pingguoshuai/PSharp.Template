@@ -15,6 +15,8 @@ using PSharp.Template.Systems.Services.Queries;
 using PSharp.Template.Systems.Services.Abstractions;
 using PSharp.Template.Systems.Services.Dtos.Requests;
 using Microsoft.EntityFrameworkCore;
+using Util.Exceptions;
+using PSharp.Template.Core;
 
 namespace PSharp.Template.Systems.Services.Implements {
     /// <summary>
@@ -65,6 +67,38 @@ namespace PSharp.Template.Systems.Services.Implements {
         {
             var entities = await ApplicationRepository.Find().OrderBy(t => t.CreationTime).ToListAsync();
             return entities.Select(ToDto).ToList();
+        }
+
+        /// <summary>
+        /// 验证创建应用程序
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        protected override async Task CreateBeforeAsync(Application entity)
+        {
+            entity.CheckNull(nameof(entity));
+            if (await ApplicationRepository.CanCreateAsync(entity) == false)
+                ThrowCodeRepeatException(entity);
+        }
+
+        /// <summary>
+        /// 验证修改应用程序
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        protected override async Task UpdateBeforeAsync(Application entity)
+        {
+            entity.CheckNull(nameof(entity));
+            if (await ApplicationRepository.CanUpdateAsync(entity) == false)
+                ThrowCodeRepeatException(entity);
+        }
+
+        /// <summary>
+        /// 抛出编码重复异常
+        /// </summary>
+        private void ThrowCodeRepeatException(Application entity)
+        {
+            throw new Warning(string.Format(InquiryResource.DuplicateApplicationCode, entity.Code));
         }
     }
 }

@@ -12,6 +12,8 @@ using PSharp.Template.Common.Services.Dtos;
 using PSharp.Template.Common.Services.Queries;
 using PSharp.Template.Common.Services.Abstractions;
 using PSharp.Template.Common.Services.Dtos.Requests;
+using PSharp.Template.Core;
+using Util.Exceptions;
 
 namespace PSharp.Template.Common.Services.Implements {
     /// <summary>
@@ -60,6 +62,28 @@ namespace PSharp.Template.Common.Services.Implements {
 
             request.MapTo(oldEntity);
             return oldEntity;
+        }
+
+        protected override async Task CreateBeforeAsync(DicType entity)
+        {
+            entity.CheckNull(nameof(entity));
+            if (await DicTypeRepository.CanCreateAsync(entity) == false)
+                ThrowCodeRepeatException(entity);
+        }
+
+        protected override async Task UpdateBeforeAsync(DicType entity)
+        {
+            entity.CheckNull(nameof(entity));
+            if (await DicTypeRepository.CanUpdateAsync(entity) == false)
+                ThrowCodeRepeatException(entity);
+        }
+
+        /// <summary>
+        /// 抛出编码重复异常
+        /// </summary>
+        private void ThrowCodeRepeatException(DicType entity)
+        {
+            throw new Warning(string.Format(InquiryResource.DuplicateApplicationCode, entity.Code));
         }
     }
 }

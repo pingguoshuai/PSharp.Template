@@ -15,5 +15,17 @@ namespace PSharp.Template.Systems.Domains.Repositories {
         /// <param name="code"></param>
         /// <returns></returns>
         Task<Application> GetByCodeAsync([NotEmpty]string code);
+
+        /// <summary>
+        /// 是否允许创建应用程序
+        /// </summary>
+        /// <param name="entity">应用程序</param>
+        Task<bool> CanCreateAsync(Application entity);
+
+        /// <summary>
+        /// 是否允许修改应用程序
+        /// </summary>
+        /// <param name="entity">应用程序</param>
+        Task<bool> CanUpdateAsync(Application entity);
     }
 }

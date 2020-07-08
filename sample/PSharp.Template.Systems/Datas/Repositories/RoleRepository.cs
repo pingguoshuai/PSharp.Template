@@ -44,7 +44,7 @@ namespace PSharp.Template.Systems.Datas.Repositories {
         }
 
         /// <summary>
-        /// 验证用户
+        /// 验证角色
         /// </summary>
         private void ValidateRole(Role role, CancellationToken cancellationToken)
         {

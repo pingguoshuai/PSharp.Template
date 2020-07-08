@@ -49,7 +49,7 @@ namespace <%= string.Format("{0}.{1}.Services.Implements",Namespace,Entity.Table
     /// <%= Description %>服务
     /// </summary>
     public class <%= SafeClassName %>Service : CrudServiceBase<<%= SafeClassName %>, <%= SafeClassName %>Dto, Update<%= SafeClassName %>Request, Create<%= SafeClassName %>Request, Update<%= SafeClassName %>Request, <%= SafeClassName %>Query<%= Entity.GetKeyTypeWithsGuid() %>>, I<%= SafeClassName %>Service {
-        private readonly IArticleRepository _articleRepository;
+        private readonly I<%= SafeClassName %>Repository _<%= SafeClassName.ToCamelCase() %>Repository;
         
         /// <summary>
         /// 初始化<%= Description %>服务
