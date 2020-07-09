@@ -83,7 +83,7 @@ namespace PSharp.Template.Common.Services.Implements {
         /// </summary>
         private void ThrowCodeRepeatException(DicType entity)
         {
-            throw new Warning(string.Format(InquiryResource.DuplicateApplicationCode, entity.Code));
+            throw new Warning(string.Format(DefaultResource.DuplicateApplicationCode, entity.Code));
         }
     }
 }

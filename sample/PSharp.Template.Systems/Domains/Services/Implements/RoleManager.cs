@@ -71,7 +71,7 @@ namespace PSharp.Template.Systems.Domains.Services.Implements
         /// </summary>
         protected void ThrowDuplicateCodeException(string code)
         {
-            throw new Warning(string.Format(InquiryResource.DuplicateRoleCode, code));
+            throw new Warning(string.Format(DefaultResource.DuplicateRoleCode, code));
         }
 
         /// <summary>

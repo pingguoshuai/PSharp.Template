@@ -18,7 +18,7 @@ namespace PSharp.Template.Core.Describers
             return new IdentityError
             {
                 Code = nameof(PasswordTooShort),
-                Description = string.Format(InquiryResource.PasswordTooShort, length)
+                Description = string.Format(DefaultResource.PasswordTooShort, length)
             };
         }
 
@@ -30,7 +30,7 @@ namespace PSharp.Template.Core.Describers
             return new IdentityError
             {
                 Code = nameof(PasswordRequiresNonAlphanumeric),
-                Description = InquiryResource.PasswordRequiresNonAlphanumeric
+                Description = DefaultResource.PasswordRequiresNonAlphanumeric
             };
         }
 
@@ -42,7 +42,7 @@ namespace PSharp.Template.Core.Describers
             return new IdentityError
             {
                 Code = nameof(PasswordRequiresUpper),
-                Description = InquiryResource.PasswordRequiresUpper
+                Description = DefaultResource.PasswordRequiresUpper
             };
         }
 
@@ -54,7 +54,7 @@ namespace PSharp.Template.Core.Describers
             return new IdentityError
             {
                 Code = nameof(PasswordRequiresDigit),
-                Description = InquiryResource.PasswordRequiresDigit
+                Description = DefaultResource.PasswordRequiresDigit
             };
         }
 
@@ -66,7 +66,7 @@ namespace PSharp.Template.Core.Describers
             return new IdentityError
             {
                 Code = nameof(PasswordRequiresUniqueChars),
-                Description = string.Format(InquiryResource.PasswordRequiresUniqueChars, uniqueChars)
+                Description = string.Format(DefaultResource.PasswordRequiresUniqueChars, uniqueChars)
             };
         }
 
@@ -78,7 +78,7 @@ namespace PSharp.Template.Core.Describers
             return new IdentityError
             {
                 Code = nameof(InvalidUserName),
-                Description = string.Format(InquiryResource.InvalidUserName, userName)
+                Description = string.Format(DefaultResource.InvalidUserName, userName)
             };
         }
 
@@ -90,7 +90,7 @@ namespace PSharp.Template.Core.Describers
             return new IdentityError
             {
                 Code = nameof(DuplicateUserName),
-                Description = string.Format(InquiryResource.DuplicateUserName, userName)
+                Description = string.Format(DefaultResource.DuplicateUserName, userName)
             };
         }
 
@@ -102,7 +102,7 @@ namespace PSharp.Template.Core.Describers
             return new IdentityError
             {
                 Code = nameof(DuplicateEmail),
-                Description = string.Format(InquiryResource.DuplicateEmail, email)
+                Description = string.Format(DefaultResource.DuplicateEmail, email)
             };
         }
 
@@ -114,7 +114,7 @@ namespace PSharp.Template.Core.Describers
             return new IdentityError
             {
                 Code = nameof(InvalidToken),
-                Description = InquiryResource.InvalidToken
+                Description = DefaultResource.InvalidToken
             };
         }
 
@@ -126,7 +126,7 @@ namespace PSharp.Template.Core.Describers
             return new IdentityError
             {
                 Code = nameof(PasswordMismatch),
-                Description = InquiryResource.PasswordMismatch
+                Description = DefaultResource.PasswordMismatch
             };
         }
 
@@ -138,7 +138,7 @@ namespace PSharp.Template.Core.Describers
             return new IdentityError
             {
                 Code = nameof(InvalidRoleName),
-                Description = string.Format(InquiryResource.InvalidRoleName, role)
+                Description = string.Format(DefaultResource.InvalidRoleName, role)
             };
         }
 
@@ -150,7 +150,7 @@ namespace PSharp.Template.Core.Describers
             return new IdentityError
             {
                 Code = nameof(DuplicateRoleName),
-                Description = string.Format(InquiryResource.DuplicateRoleName, role)
+                Description = string.Format(DefaultResource.DuplicateRoleName, role)
             };
         }
     }

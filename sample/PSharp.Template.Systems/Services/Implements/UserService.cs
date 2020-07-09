@@ -152,11 +152,11 @@ namespace PSharp.Template.Systems.Services.Implements {
             var application = await _applicationRepository.GetByCodeAsync(request.ApplicationCode);
             if (application == null)
             {
-                return new Core.Results.SignInResult(SignInState.Failed, null, InquiryResource.InvalidApplication);
+                return new Core.Results.SignInResult(SignInState.Failed, null, DefaultResource.InvalidApplication);
             }
             var user = await GetUser(request);
             if (user == null)
-                return new Core.Results.SignInResult(SignInState.Failed, null, InquiryResource.InvalidAccountOrPassword);
+                return new Core.Results.SignInResult(SignInState.Failed, null, DefaultResource.InvalidAccountOrPassword);
 
             var signInResult = await SignInManager.PasswordSignInAsync(user, request.Password, request.Remember.SafeValue(), true);
             await UnitOfWork.CommitAsync();
@@ -196,9 +196,9 @@ namespace PSharp.Template.Systems.Services.Implements {
             Microsoft.AspNetCore.Identity.SignInResult signInResult, Application application)
         {
             if (signInResult.IsNotAllowed)
-                return new Core.Results.SignInResult(SignInState.Failed, null, InquiryResource.UserIsDisabled);
+                return new Core.Results.SignInResult(SignInState.Failed, null, DefaultResource.UserIsDisabled);
             if (signInResult.IsLockedOut)
-                return new Core.Results.SignInResult(SignInState.Failed, null, InquiryResource.LoginFailLock);
+                return new Core.Results.SignInResult(SignInState.Failed, null, DefaultResource.LoginFailLock);
             if (signInResult.Succeeded)
             {
                 var roles = _roleRepository.GetRolesAsync(user.Id.ToGuid()).Result;
@@ -220,7 +220,7 @@ namespace PSharp.Template.Systems.Services.Implements {
 
             if (signInResult.RequiresTwoFactor)
                 return new Core.Results.SignInResult(SignInState.TwoFactor, user);
-            return new Core.Results.SignInResult(SignInState.Failed, null, InquiryResource.InvalidAccountOrPassword);
+            return new Core.Results.SignInResult(SignInState.Failed, null, DefaultResource.InvalidAccountOrPassword);
         }
 
         /// <summary>

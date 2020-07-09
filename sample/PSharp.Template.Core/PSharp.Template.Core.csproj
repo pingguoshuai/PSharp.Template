@@ -20,17 +20,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="InquiryResource.Designer.cs">
+    <Compile Update="DefaultResource.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>InquiryResource.resx</DependentUpon>
+      <DependentUpon>DefaultResource.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="InquiryResource.resx">
+    <EmbeddedResource Update="DefaultResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>InquiryResource.Designer.cs</LastGenOutput>
+      <LastGenOutput>DefaultResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

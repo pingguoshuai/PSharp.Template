@@ -98,7 +98,7 @@ namespace PSharp.Template.Systems.Services.Implements {
         /// </summary>
         private void ThrowCodeRepeatException(Application entity)
         {
-            throw new Warning(string.Format(InquiryResource.DuplicateApplicationCode, entity.Code));
+            throw new Warning(string.Format(DefaultResource.DuplicateApplicationCode, entity.Code));
         }
     }
 }
