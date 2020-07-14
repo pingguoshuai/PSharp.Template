@@ -24,7 +24,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace <%= Namespace %>.<%= Schema %>.Controllers {
     /// <summary>
-    /// <%= Description %>控制器
+    /// <%= Description %>
     /// </summary>
     [ApiExplorerSettings(GroupName = "<%=Entity.TableSchema%>")]
     public class <%= SafeClassName %>Controller : TreeControllerBase<<%= SafeClassName %>Dto, <%= SafeClassName %>Query> {
