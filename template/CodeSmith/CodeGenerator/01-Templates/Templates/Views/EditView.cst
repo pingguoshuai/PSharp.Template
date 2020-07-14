@@ -91,7 +91,7 @@ export default {
         var formFields = this.form.getFieldsValue()
 
         this.confirmLoading = true
-        axios.get('/api/<%=SafeClassName%>/'+id).then(res => {
+        axios.get('<%=SafeClassName%>/'+id).then(res => {
           this.entity = res.data;
 
           var setData = {}
@@ -112,7 +112,7 @@ export default {
           this.entity = Object.assign(this.entity, this.form.getFieldsValue());
           this.confirmLoading = true
           if(this.isadd){
-            axios.post('/api/<%=SafeClassName%>', this.entity).then(res => {
+            axios.post('<%=SafeClassName%>', this.entity).then(res => {
                 this.visible = false
                 this.confirmLoading = false
                 this.afterSubmit();
@@ -120,7 +120,7 @@ export default {
               this.confirmLoading = false
             })
           }else{
-            axios.put('/api/<%=SafeClassName%>', this.entity).then(res => {
+            axios.put('<%=SafeClassName%>', this.entity).then(res => {
                 this.visible = false
                 this.confirmLoading = false
                 this.afterSubmit();

@@ -81,7 +81,7 @@ export default {
       this.entity = {}
       this.confirmLoading = true
         axios
-          .get('/api/<%=SafeClassName%>/' + id)
+          .get('<%=SafeClassName%>/' + id)
           .then(res => {
             this.entity = res.data
             

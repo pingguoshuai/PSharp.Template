@@ -137,7 +137,7 @@ export default {
   methods: {
     getDataList(){
       this.loading = true;
-      axios.get("api/<%=SafeClassName%>",{params : this.queryParam}).then(res=>{
+      axios.get("<%=SafeClassName%>",{params : this.queryParam}).then(res=>{
         const {data,totalCount} = res.data;
         this.tableList = data;
         this.pagination.total = totalCount;
@@ -160,7 +160,7 @@ export default {
       this.$refs.detailModal.detail(id)
     },
     handleDel(id){
-        axios.delete('api/<%=SafeClassName%>/' + id).then(res => {
+        axios.delete('<%=SafeClassName%>/' + id).then(res => {
           this.$message.info(`删除成功`);
           this.getDataList();
         })
