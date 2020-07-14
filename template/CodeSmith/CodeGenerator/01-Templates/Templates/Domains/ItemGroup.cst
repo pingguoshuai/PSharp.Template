@@ -12,7 +12,7 @@
 <%@ Property Name="Entities" Type="List<Entity>"  %>
 <ItemGroup>
 <% foreach( Entity entity in Entities ) {%> 
-    <Compile Update="Models/<%= entity.ClassName %>.*.cs">
+    <Compile Update="Domains/Models/<%= entity.ClassName %>.*.cs">
       <DependentUpon><%= entity.ClassName %>.cs</DependentUpon>
     </Compile>
 <% }%>
