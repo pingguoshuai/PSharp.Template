@@ -1,29 +1,24 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>$(SolutionDir)output\release\</OutputPath>
-    <DocumentationFile>$(SolutionDir)output\release\netstandard2.1\PSharp.Template.Business.xml</DocumentationFile>
+    <OutputPath>..\..\output\release\</OutputPath>
+    <DocumentationFile>..\..\output\release\netstandard2.1\PSharp.Template.Business.xml</DocumentationFile>
     <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>$(SolutionDir)output\release\</OutputPath>
-    <DocumentationFile>$(SolutionDir)output\release\netstandard2.1\PSharp.Template.Business.xml</DocumentationFile>
+    <OutputPath>..\..\output\release\</OutputPath>
+    <DocumentationFile>..\..\output\release\netstandard2.1\PSharp.Template.Business.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PSharp.Template.Systems\PSharp.Template.Systems.csproj" />
     <ProjectReference Include="..\PSharp.Template.Common\PSharp.Template.Common.csproj" />
     <ProjectReference Include="..\PSharp.Template.Core\PSharp.Template.Core.csproj" />
-    <ProjectReference Include="..\PSharp.Template.Jiguang\PSharp.Template.Jiguang.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Options\" />
   </ItemGroup>
 
 </Project>

@@ -5,14 +5,14 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>$(SolutionDir)output\release\netstandard2.1\PSharp.Template.Common.xml</DocumentationFile>
-    <OutputPath>$(SolutionDir)output\release\</OutputPath>
+    <DocumentationFile>..\..\output\release\netstandard2.1\PSharp.Template.Common.xml</DocumentationFile>
+    <OutputPath>..\..\output\release\</OutputPath>
     <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>$(SolutionDir)output\release\</OutputPath>
-    <DocumentationFile>$(SolutionDir)output\release\netstandard2.1\PSharp.Template.Common.xml</DocumentationFile>
+    <OutputPath>..\..\output\release\</OutputPath>
+    <DocumentationFile>..\..\output\release\netstandard2.1\PSharp.Template.Common.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
