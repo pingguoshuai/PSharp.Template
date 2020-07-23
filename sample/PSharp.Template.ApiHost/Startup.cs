@@ -5,13 +5,11 @@ using System.Text;
 using Autofac;
 using PSharp.Template.Core.Extensions;
 using PSharp.Template.Core.Options;
-using PSharp.Template.Jiguang.Extensions;
 using PSharp.Template.Systems.AuthHelper;
 using PSharp.Template.UnitOfWork;
 using PSharp.Template.UnitOfWork.MySql;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,7 +17,6 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Util.Datas.Ef;
-using Util.Logs.Extensions;
 using Util.Webs.Extensions;
 using Senparc.CO2NET;
 using Senparc.CO2NET.RegisterServices;
@@ -27,7 +24,6 @@ using Senparc.Weixin;
 using Senparc.Weixin.Entities;
 using Senparc.Weixin.MP.Containers;
 using Senparc.Weixin.RegisterServices;
-using Microsoft.Extensions.Hosting;
 
 namespace PSharp.Template.ApiHost
 {
