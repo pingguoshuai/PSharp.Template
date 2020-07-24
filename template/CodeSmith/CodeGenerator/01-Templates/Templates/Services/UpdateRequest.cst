@@ -21,7 +21,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using Util.Ui.Attributes;
-using PSharp.Template.Core.Applications.Dtos;
+<%= string.Format("using {0}.Core.Applications.Dtos;",Namespace) %>
 
 namespace <%= string.Format("{0}.{1}.Services.Dtos.Requests",Namespace,Entity.TableSchema) %> {
     /// <summary>
