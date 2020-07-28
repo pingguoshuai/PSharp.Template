@@ -24,6 +24,14 @@ namespace PSharp.Template.Core.Enums
         [Description("查询")]
         QueryAsync,
         [Description("获取项列表")]
-        GetItemsAsync
+        GetItemsAsync,
+        [Description("启用")]
+        Enable,
+        [Description("冻结")]
+        Disable,
+        [Description("交换排序")]
+        SwapSortAsync,
+        [Description("修正排序")]
+        FixAsync
     }
 }

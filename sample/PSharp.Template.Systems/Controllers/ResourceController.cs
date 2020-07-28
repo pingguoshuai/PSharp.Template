@@ -49,6 +49,7 @@ namespace PSharp.Template.Systems.Controllers {
         /// </summary>
         /// <param name="request">创建参数</param>
         [HttpPost]
+        [Description("创建模块")]
         public async Task<IActionResult> CreateAsync([FromBody] CreateResourceRequest request)
         {
             var id = await ResourceService.CreateAsync(request);
@@ -73,6 +74,7 @@ namespace PSharp.Template.Systems.Controllers {
         /// </summary>
         /// <returns></returns>
         [HttpGet("GetResourceType")]
+        [Description("获取资源类型列表")]
         public IActionResult GetResourceType()
         {
             return Success(Enum.GetItems(typeof(ResourceType)));
