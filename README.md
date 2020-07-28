@@ -3,7 +3,6 @@
 部署环境：linux + mysql + nginx，1M小水管，手下留情    
 接口地址：http://47.105.135.202:9004/swagger  
 
----
 ## 使用方法
 1. 安装dotnet模板  
         dotnet new -i PSharp.Template  
