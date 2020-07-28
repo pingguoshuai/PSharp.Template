@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>PSharp.Template</id>
+    <version>1.0.2</version>
+    <description>
+      Creates a core webapi app.
+    </description>
+    <authors>PGS</authors>
+    <packageTypes>
+      <packageType name="Template" />
+    </packageTypes>
+    <license type="file">license\license.txt</license>
+  </metadata>
+</package>
