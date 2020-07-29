@@ -56,7 +56,7 @@ namespace PSharp.Template.ApiHost
                 });
 
 
-            services.AddUnitOfWork<IDefaultUnitOfWork, InquiryUnitOfWork>(Configuration.GetConnectionString("MySqlConnection"));
+            services.AddUnitOfWork<IDefaultUnitOfWork, DefaultUnitOfWork>(Configuration.GetConnectionString("MySqlConnection"));
 
             #region 认证
 

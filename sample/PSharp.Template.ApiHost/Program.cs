@@ -1,3 +1,4 @@
+using System;
 using PSharp.Template.Systems.Domains.Models;
 using PSharp.Template.UnitOfWork;
 using Microsoft.AspNetCore.Hosting;
@@ -6,6 +7,9 @@ using Microsoft.Extensions.Hosting;
 using System.Linq;
 using Util.Datas.Ef.Core;
 using Util.Dependency;
+using Util.Helpers;
+using Util.Logs;
+
 namespace PSharp.Template.ApiHost
 {
     public class Program
@@ -28,16 +32,18 @@ namespace PSharp.Template.ApiHost
 
         private static void DbSeed(IHost host)
         {
-            using var scope = host.Services.CreateScope();
-            var services = scope.ServiceProvider;
-            var context = services.GetRequiredService<IDefaultUnitOfWork>() as UnitOfWorkBase;
+            var log = Ioc.Create<ILog>();
+
+            var context = Ioc.Create<IDefaultUnitOfWork>() as UnitOfWorkBase;
             if (context == null) return;
+
+            #region 初始数据
 
             if (!context.Set<Application>().Any())
             {
                 var applications = new []
                 {
-                    new Application(new System.Guid("9b5ab867-7f0d-4f41-9462-4af2281bf514"))
+                    new Application(new Guid("9b5ab867-7f0d-4f41-9462-4af2281bf514"))
                     {
                         Code = "admin",
                         Name = "管理后台",
@@ -57,7 +63,7 @@ namespace PSharp.Template.ApiHost
             {
                 var roles = new []
                 {
-                    new Role(new System.Guid("121f0ffd-cf17-419c-95dd-9be5fe769c3c"),"121f0ffd-cf17-419c-95dd-9be5fe769c3c,",1)
+                    new Role(new Guid("121f0ffd-cf17-419c-95dd-9be5fe769c3c"),"121f0ffd-cf17-419c-95dd-9be5fe769c3c,",1)
                     {
                         Enabled = true,
                         SortId = 1,
@@ -81,7 +87,7 @@ namespace PSharp.Template.ApiHost
             {
                 var users = new[]
                 {
-                    new User(new System.Guid("190caf2d-17b3-4a4d-9364-2225404a8528"))
+                    new User(new Guid("190caf2d-17b3-4a4d-9364-2225404a8528"))
                     {
                         UserName = "admin",
                         NormalizedUserName = "ADMIN",
@@ -113,7 +119,7 @@ namespace PSharp.Template.ApiHost
             {
                 var userRoles = new[]
                 {
-                    new UserRole(new System.Guid("190caf2d-17b3-4a4d-9364-2225404a8528"), new System.Guid("121f0ffd-cf17-419c-95dd-9be5fe769c3c"))
+                    new UserRole(new Guid("190caf2d-17b3-4a4d-9364-2225404a8528"), new Guid("121f0ffd-cf17-419c-95dd-9be5fe769c3c"))
                 };
 
                 foreach (var userRole in userRoles)
@@ -122,6 +128,8 @@ namespace PSharp.Template.ApiHost
                 }
                 context.SaveChanges();
             }
+
+            #endregion
         }
     }
 }

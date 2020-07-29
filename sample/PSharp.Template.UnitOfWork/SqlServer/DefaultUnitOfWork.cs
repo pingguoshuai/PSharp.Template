@@ -15,14 +15,14 @@ namespace PSharp.Template.UnitOfWork.SqlServer {
     /// <summary>
     /// 工作单元
     /// </summary>
-    public class InquiryUnitOfWork : Util.Datas.Ef.SqlServer.UnitOfWork,IDefaultUnitOfWork {
+    public class DefaultUnitOfWork : Util.Datas.Ef.SqlServer.UnitOfWork,IDefaultUnitOfWork {
         /// <summary>
         /// 初始化工作单元
         /// </summary>
         /// <param name="options">配置项</param>
-        public InquiryUnitOfWork( DbContextOptions<InquiryUnitOfWork> options ) : base( options )
+        public DefaultUnitOfWork( DbContextOptions<DefaultUnitOfWork> options ) : base( options )
         {
-            base.Database.EnsureCreated();
+            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

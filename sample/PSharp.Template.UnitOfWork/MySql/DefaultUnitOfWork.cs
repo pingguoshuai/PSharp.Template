@@ -13,11 +13,11 @@ using Util.Reflections;
 
 namespace PSharp.Template.UnitOfWork.MySql
 {
-    public class InquiryUnitOfWork : Util.Datas.Ef.MySql.UnitOfWork, IDefaultUnitOfWork
+    public class DefaultUnitOfWork : Util.Datas.Ef.MySql.UnitOfWork, IDefaultUnitOfWork
     {
-        public InquiryUnitOfWork(DbContextOptions<InquiryUnitOfWork> options) : base(options)
+        public DefaultUnitOfWork(DbContextOptions<DefaultUnitOfWork> options) : base(options)
         {
-            base.Database.EnsureCreated();
+            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
