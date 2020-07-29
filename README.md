@@ -16,3 +16,7 @@
         npm install  
         npm run serve  
 注：默认mysql数据库，暂不支持动态切换数据库
+
+## 开发环境及依赖库
+1. 底层框架
+  - [Util](https://github.com/dotnetcore/Util)
