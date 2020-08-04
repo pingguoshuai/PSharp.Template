@@ -76,6 +76,7 @@ namespace PSharp.Template.Systems.AuthHelper
 
                 foreach (var methodInfo in controller.GetMethods(BindingFlags.Public | BindingFlags.Instance))
                 {
+                    if (methodInfo.GetCustomAttribute(typeof(AllowAnonymousAttribute)) != null) continue;
                     var httpMethods = methodInfo.GetCustomAttributes(typeof(HttpMethodAttribute), true);
                     if (!httpMethods.Any()) continue;
 
