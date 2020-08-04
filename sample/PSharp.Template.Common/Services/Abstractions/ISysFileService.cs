@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using Util.Applications;
 using PSharp.Template.Common.Services.Dtos;
@@ -12,6 +13,6 @@ namespace PSharp.Template.Common.Services.Abstractions {
     public interface ISysFileService : ICrudService<SysFileDto, CreateSysFileRequest, SysFileQuery>
     {
         Task<SysFileDto> GetByMd5Async(string md5);
-        Task<SysFileDto> UploadByStream(Stream stream, string oldName);
+        Task<SysFileDto> UploadByStream(Stream stream, string oldName, Func<string, bool> func = null);
     }
 }

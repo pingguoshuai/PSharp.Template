@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Util.Exceptions;
@@ -17,9 +19,10 @@ namespace PSharp.Template.Core.Files
             _pathGenerator = pathGenerator;
         }
 
-        public async Task<string> Save(Stream s, string fileName)
+        public async Task<string> Save(Stream s, string fileName, Func<string, bool> func = null)
         {
             var extension = Path.GetExtension(fileName)?.TrimStart('.');
+            func?.Invoke(extension);
 
             var name = $"{Time.GetDateTime():yyyyMMddHHmmss}.{extension}";
 
@@ -45,6 +48,28 @@ namespace PSharp.Template.Core.Files
             return path;
         }
 
+        /// <summary>
+        /// 上传图片
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public async Task<string> SaveImage(Stream s, string fileName)
+        {
+            return await Save(s, fileName, IsImage);
+        }
+
+        /// <summary>
+        /// 上传视频
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public async Task<string> SaveVideo(Stream s, string fileName)
+        {
+            return await Save(s, fileName, IsVideo);
+        }
+
         #region 文件格式
 
         /// <summary>
@@ -55,7 +80,22 @@ namespace PSharp.Template.Core.Files
         public bool IsImage(string fileExt)
         {
             ArrayList al = new ArrayList { "bmp", "jpeg", "jpg", "gif", "png", "ico" };
-            return al.Contains(fileExt.ToLower());
+            bool result = al.Contains(fileExt.ToLower());
+            if (!result) throw new Warning("文件格式不正确");
+            return true;
+        }
+
+        /// <summary>
+        /// 是否视频
+        /// </summary>
+        /// <param name="fileExt">文件扩展名，不含“.”</param>
+        /// <returns></returns>
+        public bool IsVideo(string fileExt)
+        {
+            var videos = new List<string> { "rmvb", "mkv", "ts", "wma", "avi", "rm", "mp4", "flv", "mpeg", "mov", "3gp", "mpg" };
+            bool result = videos.Contains(fileExt.ToLower());
+            if (!result) throw new Warning("文件格式不正确");
+            return true;
         }
 
         #endregion

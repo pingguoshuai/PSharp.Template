@@ -15,6 +15,7 @@ using PSharp.Template.Common.Services.Abstractions;
 using PSharp.Template.Common.Services.Dtos.Requests;
 using PSharp.Template.Core.Files;
 using PSharp.Template.Core.Helper;
+using File = Util.Helpers.File;
 
 namespace PSharp.Template.Common.Services.Implements
 {
@@ -106,20 +107,26 @@ namespace PSharp.Template.Common.Services.Implements
         /// </summary>
         /// <param name="stream"></param>
         /// <param name="oldName"></param>
+        /// <param name="func"></param>
         /// <returns></returns>
-        public async Task<SysFileDto> UploadByStream(Stream stream, string oldName)
+        public async Task<SysFileDto> UploadByStream(Stream stream, string oldName, Func<string, bool> func = null)
         {
             stream.CheckNull(nameof(stream));
+
+            #region MD5校验
+
             int length = (int)stream.Length;
-            var b = await Util.Helpers.File.ToBytesAsync(stream);
+            var b = await File.ToBytesAsync(stream);
             var fileMd5 = Encrypt.Md5By32(b);
 
             var entityDto = await GetByMd5Async(fileMd5);
             if (entityDto != null) return entityDto;
 
-            var path = await FileStore.Save(stream, oldName);
+            #endregion
 
-            //var path = func.Invoke();
+            var path = await FileStore.Save(stream, oldName, func);
+
+            #region 保存到数据库
 
             var newName = path.Substring(path.LastIndexOf('/') + 1, path.Length - path.LastIndexOf('/') - 1);
 
@@ -136,6 +143,8 @@ namespace PSharp.Template.Common.Services.Implements
             var id = await CreateAsync(request);
             var result = await GetByIdAsync(id);
             await UnitOfWork.CommitAsync();
+
+            #endregion
 
             return result;
         }

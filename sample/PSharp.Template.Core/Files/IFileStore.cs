@@ -8,7 +8,9 @@ namespace PSharp.Template.Core.Files
 {
     public interface IFileStore : Util.Files.IFileStore
     {
-        Task<string> Save(Stream s, string fileName);
+        Task<string> Save(Stream s, string fileName, Func<string, bool> func = null);
+        Task<string> SaveImage(Stream s, string fileName);
+        Task<string> SaveVideo(Stream s, string fileName);
 
         /// <summary>
         /// 是否为图片
@@ -16,5 +18,12 @@ namespace PSharp.Template.Core.Files
         /// <param name="fileExt">文件扩展名，不含“.”</param>
         /// <returns></returns>
         bool IsImage(string fileExt);
+
+        /// <summary>
+        /// 是否为视频
+        /// </summary>
+        /// <param name="fileExt">文件扩展名，不含“.”</param>
+        /// <returns></returns>
+        bool IsVideo(string fileExt);
     }
 }
