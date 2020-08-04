@@ -16,6 +16,7 @@
 <% string SafeClassName = Entity.ClassName.ToSafeName(); %>
 <%-- 描述 --%>
 <% string Description = Entity.Description; %>
+using System.ComponentModel;
 using Util.Ui.Controllers;
 using <%= string.Format("{0}.{1}.Services.Dtos",Namespace,Entity.TableSchema) %>;
 using <%= string.Format("{0}.{1}.Services.Queries",Namespace,Entity.TableSchema) %>;
@@ -27,6 +28,7 @@ namespace <%= Namespace %>.<%= Schema %>.Controllers {
     /// <%= Description %>
     /// </summary>
     [ApiExplorerSettings(GroupName = "<%=Entity.TableSchema%>")]
+    [Description("<%= Description %>管理")]
     public class <%= SafeClassName %>Controller : TreeControllerBase<<%= SafeClassName %>Dto, <%= SafeClassName %>Query> {
         /// <summary>
         /// 初始化<%= Description %>控制器
