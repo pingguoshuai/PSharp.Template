@@ -25,7 +25,9 @@ namespace PSharp.Template.Common.Services.Dtos.Extensions {
         public static SysFileDto ToDto(this SysFile entity) {
             if( entity == null )
                 return new SysFileDto();
-            return entity.MapTo<SysFileDto>();
+            var result = entity.MapTo<SysFileDto>();
+            result.Src = string.IsNullOrEmpty(result.Src) ? result.Src : Core.Helper.Web.GetHttpAndHost() + result.Src;
+            return result;
         }
     }
 }

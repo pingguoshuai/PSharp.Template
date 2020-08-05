@@ -42,7 +42,7 @@ namespace PSharp.Template.Common.Controllers
         /// <param name="file"></param>
         /// <returns></returns>
         [HttpPost("Upload")]
-        [Description("上传")]
+        [Description("上传图片")]
         public async Task<IActionResult> Upload(IFormFile file)
         {
             var stream = file.OpenReadStream();
@@ -56,7 +56,7 @@ namespace PSharp.Template.Common.Controllers
         /// <param name="file"></param>
         /// <returns></returns>
         [HttpPost("UploadVideo")]
-        [Description("上传")]
+        [Description("上传视频")]
         public async Task<IActionResult> UploadVideo(IFormFile file)
         {
             var stream = file.OpenReadStream();

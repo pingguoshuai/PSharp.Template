@@ -12,6 +12,7 @@ using PSharp.Template.Common.Domains.Repositories;
 using PSharp.Template.Common.Services.Dtos;
 using PSharp.Template.Common.Services.Queries;
 using PSharp.Template.Common.Services.Abstractions;
+using PSharp.Template.Common.Services.Dtos.Extensions;
 using PSharp.Template.Common.Services.Dtos.Requests;
 using PSharp.Template.Core.Files;
 using PSharp.Template.Core.Helper;
@@ -90,6 +91,11 @@ namespace PSharp.Template.Common.Services.Implements
             return oldEntity;
         }
 
+        protected override SysFileDto ToDto(SysFile entity)
+        {
+            return entity.ToDto();
+        }
+
         /// <summary>
         /// 根据md5查询文件
         /// </summary>
@@ -99,7 +105,7 @@ namespace PSharp.Template.Common.Services.Implements
         {
             md5.CheckNull(nameof(md5));
             SysFile entity = await SysFileRepository.SingleAsync(t => t.Md5.Equals(md5));
-            return entity?.MapTo<SysFileDto>();
+            return ToDto(entity);
         }
 
         /// <summary>
