@@ -23,8 +23,8 @@ namespace PSharp.Template.Common.Services.Dtos.Extensions {
         /// </summary>
         /// <param name="entity">实体</param>
         public static SysFileDto ToDto(this SysFile entity) {
-            if( entity == null )
-                return new SysFileDto();
+            if (entity == null)
+                return null;
             var result = entity.MapTo<SysFileDto>();
             result.Src = string.IsNullOrEmpty(result.Src) ? result.Src : Core.Helper.Web.GetHttpAndHost() + result.Src;
             return result;
