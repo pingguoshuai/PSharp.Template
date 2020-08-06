@@ -18,5 +18,14 @@
 注：默认mysql数据库，暂不支持动态切换数据库
 
 ## 开发环境及依赖库
+1. 开发环境
+- Vs2019 16.6
+- MySql
+- ReSharper
+- .Net Core 3.1
+2. 前端
+- [Ant Design Pro of Vue](https://pro.antdv.com/)
+3. CodeSmith
+- 代码生成器，一键生成curd代码及前端curd页面
 1. 底层框架
   - [Util](https://github.com/dotnetcore/Util)
