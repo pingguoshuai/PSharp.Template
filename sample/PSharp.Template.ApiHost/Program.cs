@@ -36,6 +36,7 @@ namespace PSharp.Template.ApiHost
 
             var context = Ioc.Create<IDefaultUnitOfWork>() as UnitOfWorkBase;
             if (context == null) return;
+            context.Database.EnsureCreated();
 
             #region 初始数据
 

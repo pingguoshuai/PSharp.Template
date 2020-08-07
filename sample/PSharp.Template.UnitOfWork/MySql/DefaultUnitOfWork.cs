@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using PSharp.Template.Core.Datas;
 using Util.Datas.Ef.MySql;
 using Util.Datas.Sql;
 using Util.Domains;
@@ -15,9 +16,9 @@ namespace PSharp.Template.UnitOfWork.MySql
 {
     public class DefaultUnitOfWork : Util.Datas.Ef.MySql.UnitOfWork, IDefaultUnitOfWork
     {
-        public DefaultUnitOfWork(DbContextOptions<DefaultUnitOfWork> options) : base(options)
+        public DefaultUnitOfWork(DbContextOptions<DefaultUnitOfWork> options, DbContextFactory dbContextFactory) : base(options)
         {
-            
+            dbContextFactory.SetConnectionString(this);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

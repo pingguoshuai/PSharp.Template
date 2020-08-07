@@ -88,7 +88,7 @@ namespace PSharp.Template.Systems.AuthHelper
             var action = actionDescriptor.ActionName;
             var httpMethod = resource.HttpContext.Request.Method;
 
-            var roleInterfaces = _permissionService.GetAllRoleInterface();
+            var roleInterfaces = await Task.Run(()=> _permissionService.GetAllRoleInterface());
             roleInterfaces = roleInterfaces.Where(t => t.InterfaceDto != null).ToList();
 
             var roleInterface = roleInterfaces.FirstOrDefault(t =>

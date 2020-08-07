@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Util.Datas\07-Util.Datas.csproj" />
+    <ProjectReference Include="..\PSharp.Template.Core\PSharp.Template.Core.csproj" />
   </ItemGroup>
 
 </Project>

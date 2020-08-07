@@ -7,7 +7,6 @@ using PSharp.Template.Core.Extensions;
 using PSharp.Template.Core.Options;
 using PSharp.Template.Systems.AuthHelper;
 using PSharp.Template.UnitOfWork;
-using PSharp.Template.UnitOfWork.MySql;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.Authorization;
@@ -56,7 +55,8 @@ namespace PSharp.Template.ApiHost
                 });
 
 
-            services.AddUnitOfWork<IDefaultUnitOfWork, DefaultUnitOfWork>(Configuration.GetConnectionString("MySqlConnection"));
+            services.AddUnitOfWork<IDefaultUnitOfWork, UnitOfWork.MySql.DefaultUnitOfWork>(Configuration.GetConnectionString("MySqlConnection"));
+            //services.AddUnitOfWork<IDefaultUnitOfWork, UnitOfWork.SqlServer.DefaultUnitOfWork>(Configuration.GetConnectionString("DefaultConnection"));
 
             #region 认证
 

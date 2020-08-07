@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using PSharp.Template.Core.Datas;
 using Util.Datas.Ef.SqlServer;
 using Util.Datas.Sql;
 using Util.Domains;
@@ -20,9 +21,10 @@ namespace PSharp.Template.UnitOfWork.SqlServer {
         /// 初始化工作单元
         /// </summary>
         /// <param name="options">配置项</param>
-        public DefaultUnitOfWork( DbContextOptions<DefaultUnitOfWork> options ) : base( options )
+        /// <param name="dbContextFactory"></param>
+        public DefaultUnitOfWork( DbContextOptions<DefaultUnitOfWork> options, DbContextFactory dbContextFactory) : base( options )
         {
-            
+            dbContextFactory.SetConnectionString(this);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

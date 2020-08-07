@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PSharp.Template.Core\PSharp.Template.Core.csproj" />
+    <ProjectReference Include="..\PSharp.Template.UnitOfWork\PSharp.Template.UnitOfWork.csproj" />
   </ItemGroup>
 
   <ItemGroup>

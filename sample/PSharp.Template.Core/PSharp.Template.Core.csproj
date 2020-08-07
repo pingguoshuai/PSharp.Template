@@ -16,7 +16,6 @@
     <ProjectReference Include="..\..\src\Util.Ui.Angular.AntDesign\02-Util.Ui.Angular.AntDesign.csproj" />
     <ProjectReference Include="..\..\src\Util.Webs\10-Util.Webs.csproj" />
     <ProjectReference Include="..\..\src\Util\01-Util.csproj" />
-    <ProjectReference Include="..\PSharp.Template.UnitOfWork\PSharp.Template.UnitOfWork.csproj" />
   </ItemGroup>
 
   <ItemGroup>
