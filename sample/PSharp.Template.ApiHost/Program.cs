@@ -33,17 +33,18 @@ namespace PSharp.Template.ApiHost
         private static void DbSeed(IHost host)
         {
             var log = Ioc.Create<ILog>();
-
-            var context = Ioc.Create<IDefaultUnitOfWork>() as UnitOfWorkBase;
-            if (context == null) return;
-            context.Database.EnsureCreated();
-
-            #region 初始数据
-
-            if (!context.Set<Application>().Any())
+            try
             {
-                var applications = new []
+                var context = Ioc.Create<IDefaultUnitOfWork>() as UnitOfWorkBase;
+                if (context == null) return;
+                context.Database.EnsureCreated();
+
+                #region 初始数据
+
+                if (!context.Set<Application>().Any())
                 {
+                    var applications = new[]
+                    {
                     new Application(new Guid("9b5ab867-7f0d-4f41-9462-4af2281bf514"))
                     {
                         Code = "admin",
@@ -53,17 +54,17 @@ namespace PSharp.Template.ApiHost
                     }
                 };
 
-                foreach (Application s in applications)
-                {
-                    context.Set<Application>().Add(s);
+                    foreach (Application s in applications)
+                    {
+                        context.Set<Application>().Add(s);
+                    }
+                    context.SaveChanges();
                 }
-                context.SaveChanges();
-            }
 
-            if (!context.Set<Role>().Any())
-            {
-                var roles = new []
+                if (!context.Set<Role>().Any())
                 {
+                    var roles = new[]
+                    {
                     new Role(new Guid("121f0ffd-cf17-419c-95dd-9be5fe769c3c"),"121f0ffd-cf17-419c-95dd-9be5fe769c3c,",1)
                     {
                         Enabled = true,
@@ -77,17 +78,17 @@ namespace PSharp.Template.ApiHost
                     }
                 };
 
-                foreach (Role s in roles)
-                {
-                    context.Set<Role>().Add(s);
+                    foreach (Role s in roles)
+                    {
+                        context.Set<Role>().Add(s);
+                    }
+                    context.SaveChanges();
                 }
-                context.SaveChanges();
-            }
 
-            if (!context.Set<User>().Any())
-            {
-                var users = new[]
+                if (!context.Set<User>().Any())
                 {
+                    var users = new[]
+                    {
                     new User(new Guid("190caf2d-17b3-4a4d-9364-2225404a8528"))
                     {
                         UserName = "admin",
@@ -109,28 +110,34 @@ namespace PSharp.Template.ApiHost
                     }
                 };
 
-                foreach (User user in users)
-                {
-                    context.Set<User>().Add(user);
+                    foreach (User user in users)
+                    {
+                        context.Set<User>().Add(user);
+                    }
+                    context.SaveChanges();
                 }
-                context.SaveChanges();
-            }
 
-            if (!context.Set<UserRole>().Any())
-            {
-                var userRoles = new[]
+                if (!context.Set<UserRole>().Any())
                 {
+                    var userRoles = new[]
+                    {
                     new UserRole(new Guid("190caf2d-17b3-4a4d-9364-2225404a8528"), new Guid("121f0ffd-cf17-419c-95dd-9be5fe769c3c"))
                 };
 
-                foreach (var userRole in userRoles)
-                {
-                    context.Set<UserRole>().Add(userRole);
+                    foreach (var userRole in userRoles)
+                    {
+                        context.Set<UserRole>().Add(userRole);
+                    }
+                    context.SaveChanges();
                 }
-                context.SaveChanges();
-            }
 
-            #endregion
+                #endregion
+            }
+            catch (Exception e)
+            {
+                log.Error($"Error occured seeding the Database.\n{e.Message}");
+                throw;
+            }
         }
     }
 }
