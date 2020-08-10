@@ -61,6 +61,7 @@ namespace PSharp.Template.Common.Services.Implements {
             }
 
             request.MapTo(oldEntity);
+            oldEntity.Version = request.Version;
             return oldEntity;
         }
 

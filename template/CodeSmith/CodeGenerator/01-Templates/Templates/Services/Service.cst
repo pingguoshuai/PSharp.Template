@@ -78,6 +78,7 @@ namespace <%= string.Format("{0}.{1}.Services.Implements",Namespace,Entity.Table
             }
 
             request.MapTo(oldEntity);
+            oldEntity.Version = request.Version;
             return oldEntity;
         }
     }
