@@ -5,7 +5,7 @@ namespace PSharp.Template.Core.Datas.DbStrategy
     /// <summary>
     /// 随机策略
     /// </summary>
-    public class RandomStrategy : DbStrategy, IDbStrategy
+    public class RandomStrategy : DbStrategyBase
     {
         public override string GetConnectionString()
         {

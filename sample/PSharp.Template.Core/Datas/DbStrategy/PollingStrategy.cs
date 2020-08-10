@@ -3,7 +3,7 @@
     /// <summary>
     /// 轮询策略
     /// </summary>
-    public class PollingStrategy : DbStrategy, IDbStrategy
+    public class PollingStrategy : DbStrategyBase
     {
         private int _currentIndex = -1;
 
