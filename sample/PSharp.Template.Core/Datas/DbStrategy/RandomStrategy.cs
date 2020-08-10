@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.Extensions.Configuration;
 
 namespace PSharp.Template.Core.Datas.DbStrategy
 {
@@ -8,11 +7,7 @@ namespace PSharp.Template.Core.Datas.DbStrategy
     /// </summary>
     public class RandomStrategy : DbStrategy, IDbStrategy
     {
-        public RandomStrategy(IConfiguration configuration) : base(configuration)
-        {
-        }
-
-        public string GetConnectionString()
+        public override string GetConnectionString()
         {
             int index = new Random().Next(0, ReadConn.Count);
             return ReadConn[index];

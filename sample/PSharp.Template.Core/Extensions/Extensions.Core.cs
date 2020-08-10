@@ -16,6 +16,8 @@ using Util.Logs.Extensions;
 using Util.Randoms;
 using Util.Reflections;
 using IFileStore = Util.Files.IFileStore;
+using System;
+using PSharp.Template.Core.Datas.DbStrategy;
 
 namespace PSharp.Template.Core.Extensions
 {
@@ -26,6 +28,7 @@ namespace PSharp.Template.Core.Extensions
             services.AddNLog();
 
             var configuration = services.BuildServiceProvider().GetRequiredService<IConfiguration>();
+            services.Configure<DbOptions>(configuration.GetSection("DbOptions"));
 
             services.AddCors(options =>
             {
@@ -34,6 +37,22 @@ namespace PSharp.Template.Core.Extensions
                     .AllowAnyHeader()
                     .AllowCredentials());
             });
+
+            #region 主从策略配置
+
+            DbOptions dbOptions = configuration.GetSection("DbOptions").Get<DbOptions>();
+            Type type = Type.GetType(dbOptions.Strategy);
+            if (type != null)
+            {
+                var dbStrategyClass = Activator.CreateInstance(type);
+                services.AddSingleton(typeof(IDbStrategy), dbStrategyClass);
+            }
+            else
+            {
+                services.AddSingleton<IDbStrategy, PollingStrategy>();
+            }
+
+            #endregion
 
             #region 上传
 

@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using PSharp.Template.Core.Datas.DbStrategy;
 using PSharp.Template.Core.Dependency;
+using PSharp.Template.Core.Options;
 using Util.Datas.Ef.Core;
 using Util.Datas.UnitOfWorks;
 using Util.Helpers;
@@ -13,13 +14,13 @@ namespace PSharp.Template.Core.Datas
 {
     public class DbContextFactory : IISingletonDependency
     {
-        private readonly IDbStrategy _dbStrtegy;
+        private readonly IDbStrategy _dbStrategy;
         private readonly List<string> _readConn;
 
-        public DbContextFactory(IConfiguration configuration,IDbStrategy dbStrtegy)
+        public DbContextFactory(IOptions<DbOptions> dbOptions, IDbStrategy dbStrategy)
         {
-            _dbStrtegy = dbStrtegy;
-            _readConn = configuration.GetSection("Slave").GetChildren().Select(t => t.Value).ToList();
+            _dbStrategy = dbStrategy;
+            _readConn = dbOptions.Value.SlaveList.ToList();
         }
 
         public void SetConnectionString(IUnitOfWork unitOfWork)
@@ -31,13 +32,7 @@ namespace PSharp.Template.Core.Datas
             {
                 if (method.Equals("get", StringComparison.OrdinalIgnoreCase))
                 {
-                    //随机
-                    //轮询
-                    //权重
-
-                    int index = new System.Random().Next(0, _readConn.Count);
-                    ((UnitOfWorkBase)unitOfWork).Database.GetDbConnection().ConnectionString = _readConn[index];
-                    //((UnitOfWorkBase)unitOfWork).Database.GetDbConnection().ConnectionString = _dbStrtegy.GetConnectionString();
+                    ((UnitOfWorkBase)unitOfWork).Database.GetDbConnection().ConnectionString = _dbStrategy.GetConnectionString();
                 }
             }
         }

@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.Configuration;
-
-namespace PSharp.Template.Core.Datas.DbStrategy
+﻿namespace PSharp.Template.Core.Datas.DbStrategy
 {
+    /// <summary>
+    /// 轮询策略
+    /// </summary>
     public class PollingStrategy : DbStrategy, IDbStrategy
     {
         private int _currentIndex = -1;
 
-        public PollingStrategy(IConfiguration configuration) : base(configuration)
-        {
-
-        }
-
-        public string GetConnectionString()
+        public override string GetConnectionString()
         {
             _currentIndex++;
             if (_currentIndex >= ReadConn.Count)

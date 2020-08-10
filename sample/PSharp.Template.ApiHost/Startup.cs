@@ -23,7 +23,6 @@ using Senparc.Weixin;
 using Senparc.Weixin.Entities;
 using Senparc.Weixin.MP.Containers;
 using Senparc.Weixin.RegisterServices;
-using PSharp.Template.Core.Datas.DbStrategy;
 
 namespace PSharp.Template.ApiHost
 {
@@ -58,8 +57,6 @@ namespace PSharp.Template.ApiHost
 
             services.AddUnitOfWork<IDefaultUnitOfWork, UnitOfWork.MySql.DefaultUnitOfWork>(Configuration.GetConnectionString("MySqlConnection"));
             //services.AddUnitOfWork<IDefaultUnitOfWork, UnitOfWork.SqlServer.DefaultUnitOfWork>(Configuration.GetConnectionString("DefaultConnection"));
-
-            services.AddSingleton<IDbStrategy, PollingStrategy>();
 
             #region 认证
 
@@ -194,7 +191,7 @@ namespace PSharp.Template.ApiHost
             #region 微信配置
 
             IRegisterService register = RegisterService.Start(senparcSetting.Value)
-                .UseSenparcGlobal(false, null);
+                .UseSenparcGlobal();
             register.UseSenparcWeixin(senparcWeixinSetting.Value, senparcSetting.Value);
             AccessTokenContainer.RegisterAsync(senparcWeixinSetting.Value.WeixinAppId, senparcWeixinSetting.Value.WeixinAppSecret);
 
