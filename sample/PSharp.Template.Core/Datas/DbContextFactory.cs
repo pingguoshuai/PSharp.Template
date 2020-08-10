@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using PSharp.Template.Core.Datas.DbStrategy;
 using PSharp.Template.Core.Dependency;
 using Util.Datas.Ef.Core;
 using Util.Datas.UnitOfWorks;
@@ -14,10 +15,12 @@ namespace PSharp.Template.Core.Datas
 {
     public class DbContextFactory : IISingletonDependency
     {
+        private readonly IDbStrategy _dbStrtegy;
         private readonly List<string> _readConn;
 
-        public DbContextFactory(IConfiguration configuration)
+        public DbContextFactory(IConfiguration configuration,IDbStrategy dbStrtegy)
         {
+            _dbStrtegy = dbStrtegy;
             _readConn = configuration.GetSection("Slave").GetChildren().Select(t => t.Value).ToList();
         }
 
@@ -33,8 +36,10 @@ namespace PSharp.Template.Core.Datas
                     //随机
                     //轮询
                     //权重
+
                     int index = new System.Random().Next(0, _readConn.Count);
-                    ((UnitOfWorkBase) unitOfWork).Database.GetDbConnection().ConnectionString = _readConn[index];
+                    ((UnitOfWorkBase)unitOfWork).Database.GetDbConnection().ConnectionString = _readConn[index];
+                    //((UnitOfWorkBase)unitOfWork).Database.GetDbConnection().ConnectionString = _dbStrtegy.GetConnectionString();
                 }
             }
         }

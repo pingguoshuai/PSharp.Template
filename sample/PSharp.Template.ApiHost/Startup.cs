@@ -23,6 +23,7 @@ using Senparc.Weixin;
 using Senparc.Weixin.Entities;
 using Senparc.Weixin.MP.Containers;
 using Senparc.Weixin.RegisterServices;
+using PSharp.Template.Core.Datas.DbStrategy;
 
 namespace PSharp.Template.ApiHost
 {
@@ -57,6 +58,8 @@ namespace PSharp.Template.ApiHost
 
             services.AddUnitOfWork<IDefaultUnitOfWork, UnitOfWork.MySql.DefaultUnitOfWork>(Configuration.GetConnectionString("MySqlConnection"));
             //services.AddUnitOfWork<IDefaultUnitOfWork, UnitOfWork.SqlServer.DefaultUnitOfWork>(Configuration.GetConnectionString("DefaultConnection"));
+
+            services.AddSingleton<IDbStrategy, PollingStrategy>();
 
             #region 认证
 
