@@ -17,7 +17,24 @@
         npm run serve  
 注：默认mysql数据库，暂不支持动态切换数据库
 
+## 功能介绍
+
+功能 | 描述
+---|---
+应用程序管理 | 应用程序管理
+角色管理 | 角色管理
+权限分配 | 权限分配
+菜单管理 | 菜单管理
+文件管理 | 文件管理
+字典管理 | 字典管理
+读写分离 | HttpGet 标识，随机选择一个读库
+CodeSmith | 代码生成器，一键生成curd代码及前端curd页面
+
+
+
 ## 开发环境及依赖库
+0. 依赖框架
+  - [Util](https://github.com/dotnetcore/Util)
 1. 开发环境
 - Vs2019 16.6
 - MySql
@@ -27,5 +44,3 @@
 - [Ant Design Pro of Vue](https://pro.antdv.com/)
 3. CodeSmith
 - 代码生成器，一键生成curd代码及前端curd页面
-1. 底层框架
-  - [Util](https://github.com/dotnetcore/Util)
