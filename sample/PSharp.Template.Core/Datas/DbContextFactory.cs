@@ -20,12 +20,12 @@ namespace PSharp.Template.Core.Datas
         public DbContextFactory(IOptions<DbOptions> dbOptions, IDbStrategy dbStrategy)
         {
             _dbStrategy = dbStrategy;
-            _readConn = dbOptions.Value.SlaveList.ToList();
+            _readConn = dbOptions.Value.SlaveList?.ToList();
         }
 
         public void SetConnectionString(IUnitOfWork unitOfWork)
         {
-            if (!_readConn.Any()) return;
+            if (_readConn == null || !_readConn.Any()) return;
 
             var method = Web.HttpContext?.Request.Method;
             if (!string.IsNullOrEmpty(method))
