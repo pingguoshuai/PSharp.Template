@@ -9,6 +9,8 @@ namespace PSharp.Template.Common.Cache
     public class CacheKeys : ICacheKey
     {
         [Description("字典信息")]
-        public static string DicInfoListByCode = "Common:DicInfo:ListByCode:";
+        public const string DicInfoListByCode = "Common:DicInfo:ListByCode:";
+        [Description("地区信息")]
+        public const string AreaListByParent = "Common:Area:ListByParent:";
     }
 }
