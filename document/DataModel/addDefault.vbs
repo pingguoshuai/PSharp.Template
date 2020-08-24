@@ -48,6 +48,16 @@ On Error Resume Next
                   if isNeedAdd then
                      Set col = tab.columns.CreateNew 
                      If not col is Nothing then
+                        col.name = "Version"
+                        col.code = "Version"
+                        col.comment = "Version"
+                        col.DataType = "longblob"
+                        output " col.name: " + col.name
+                     End If
+                     set col = nothing
+
+                     Set col = tab.columns.CreateNew 
+                     If not col is Nothing then
                         col.name = "创建时间"
                         col.code = "CreationTime"
                         col.comment = "创建时间"
