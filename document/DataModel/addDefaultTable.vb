@@ -26,6 +26,13 @@ col.Primary = True
 set col = nothing
 
 Set col = table.columns.CreateNew 
+col.name = "Version"
+col.code = "Version"
+col.comment = "Version"
+col.DataType = "longblob"
+set col = nothing
+
+Set col = table.columns.CreateNew 
 col.name = "创建时间"
 col.code = "CreationTime"
 col.comment = "创建时间"
