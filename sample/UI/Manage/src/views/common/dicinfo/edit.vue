@@ -128,7 +128,7 @@ export default {
                 if (!errors) {
                     let data = {
                         name: values.name,
-                        code: values.code,
+                        value: values.value,
                         status: values.status,
                         dicTypeId: values.dicTypeId,
                         sort: values.sort,
